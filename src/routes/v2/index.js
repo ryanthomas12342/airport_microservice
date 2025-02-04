@@ -1,6 +1,9 @@
 const express = require("express");
-const v1Routes = require("./v1");
+
 const router = express.Router();
-router.use("/v1", v1Routes);
+
+router.get("/info", (req, res) => {
+  return res.send("yaass");
+});
 
 module.exports = router;
