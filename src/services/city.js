@@ -31,6 +31,22 @@ const createCity = async (data) => {
   }
 };
 
+const deleteCity = async (data) => {
+  try {
+    const resp = await City.destroy(data);
+
+    return resp;
+  } catch (err) {
+    console.log(err);
+
+    throw new AppError(
+      "failed to  delete city object",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+};
+
 module.exports = {
   createCity,
+  deleteCity,
 };
