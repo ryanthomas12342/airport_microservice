@@ -71,10 +71,27 @@ const deleteAirplane = async (req, res) => {
     return res.status(err.statusCode).json(ErrorMessage);
   }
 };
+const updateAirplane = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const resp = await AirplaneService.updateAirplane(req.body, id);
+
+    SuccessMessage.data = resp;
+
+    return res.status(StatusCodes.OK).json(SuccessMessage);
+  } catch (err) {
+    console.log("helloo");
+    console.log(err);
+    ErrorMessage.error = new AppError(err.explanation, err.statusCode);
+
+    return res.status(err.statusCode).json(ErrorMessage);
+  }
+};
 
 module.exports = {
   createAirplane,
   getAllAirplanes,
   getByID,
   deleteAirplane,
+  updateAirplane,
 };

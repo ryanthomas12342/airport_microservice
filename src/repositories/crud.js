@@ -48,6 +48,15 @@ class CrudRepository {
         id: id,
       },
     });
+    console.log("this sis ", response);
+    if (!response) {
+      throw new AppError(
+        "Airplane could not be updated as it doesnt exist",
+        StatusCodes.NOT_FOUND
+      );
+    }
+
+    return response;
   }
 }
 

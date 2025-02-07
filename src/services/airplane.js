@@ -78,9 +78,26 @@ const destroyAirplane = async (data) => {
     );
   }
 };
+const updateAirplane = async (data, id) => {
+  try {
+    const resp = await airplane.update(data, id);
+
+    return resp;
+  } catch (err) {
+    console.log(err);
+    if (err.statusCode == StatusCodes.NOT_FOUND)
+      throw new AppError(err.explanation, err.statusCode);
+
+    throw new AppError(
+      "Something went wrong while trying to update",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+};
 module.exports = {
   createAirplane,
   getAirplanes,
   getAirplaneById,
   destroyAirplane,
+  updateAirplane,
 };
