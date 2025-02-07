@@ -15,6 +15,19 @@ const validateBody = (req, res, next) => {
   next();
 };
 
+const validateRequest = (req, res, next) => {
+  const { id } = req.params;
+  const { method } = req.method;
+  console.log(method);
+
+  if (id === undefined) {
+    ErrorMessage.error = `The id wasnt provided to do the ${method} operation`;
+    return res.status(StatusCodes.BAD_REQUEST).json(ErrorMessage);
+  }
+  next();
+};
+
 module.exports = {
   validateBody,
+  validateRequest,
 };
