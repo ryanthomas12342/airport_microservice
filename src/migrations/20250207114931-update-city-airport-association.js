@@ -11,7 +11,7 @@ module.exports = {
      */
     await queryInterface.addConstraint("Airports", {
       fields: ["city_id"],
-      type: "FOREIGN KEY",
+      type: "foreign key",
       name: "fk_id",
       references: {
         table: "Cities",
