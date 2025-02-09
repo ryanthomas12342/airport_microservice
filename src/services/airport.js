@@ -30,10 +30,13 @@ const createAiport = async (data) => {
 
 const getAirports = async () => {
   try {
+    console.log("hello");
     const resp = await airport.getAll();
     return resp;
   } catch (err) {
-    throw AppError(
+    console.log(err);
+
+    throw new AppError(
       "Cannot fetch data from db of airplanes",
       StatusCodes.INTERNAL_SERVER_ERROR
     );

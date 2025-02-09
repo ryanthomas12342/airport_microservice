@@ -34,7 +34,7 @@ const createAirport = async (req, res) => {
 
 const getAllAirports = async (req, res) => {
   try {
-    const resp = await AiportController.getAllAirports();
+    const resp = await AirportService.getAirports();
     SuccessMessage.data = resp;
     return res.status(StatusCodes.OK).send(SuccessMessage);
   } catch (err) {
@@ -54,6 +54,7 @@ const getAiportByID = async (req, res) => {
     SuccessMessage.data = resp;
     return res.status(StatusCodes.OK).json(SuccessMessage);
   } catch (err) {
+    console.log(err);
     ErrorMessage.error = new AppError(err.explanation, err.statusCode);
 
     return res.status(err.statusCode).json(ErrorMessage);
