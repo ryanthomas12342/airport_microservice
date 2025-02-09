@@ -15,13 +15,11 @@ module.exports = (sequelize, DataTypes) => {
         onUpdate: "CASCADE",
       });
 
-      this.hasMany(models.Flight, {
+      this.hasMany(models.flight, {
         foreignKey: "arrivalAirportId",
-        onDelete: "CASCADE",
       });
-      this.hasMany(models.Flight, {
+      this.hasMany(models.flight, {
         foreignKey: "departureAirportId",
-        onDelete: "CASCADE",
       });
     }
   }
