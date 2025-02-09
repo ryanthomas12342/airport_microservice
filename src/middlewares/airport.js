@@ -3,6 +3,7 @@ const { SuccessMessage, ErrorMessage } = require("../utils/common");
 const AppError = require("../utils/errors/apperror");
 
 const validateAirport = (req, res, next) => {
+  console.log("this is the body", req);
   if (!req.body.name) {
     ErrorMessage.message = "Something went wrong while creating the airport";
     ErrorMessage.error = new AppError(

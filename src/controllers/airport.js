@@ -2,7 +2,6 @@ const { AirportService } = require("../services/index");
 const { SuccessMessage, ErrorMessage } = require("../utils/common");
 const { StatusCodes } = require("http-status-codes");
 const AppError = require("../utils/errors/apperror");
-const { AirportRepository } = require("../repositories");
 const createAirport = async (req, res) => {
   try {
     const { name, code, address, city_id } = req.body;

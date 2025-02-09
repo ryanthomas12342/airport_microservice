@@ -1,7 +1,7 @@
 const { StatusCodes } = require("http-status-codes");
 const { SuccessMessage, ErrorMessage } = require("../utils/common");
 const AppError = require("../utils/errors/apperror");
-
+//midlleware to check if modelnumber is  present
 const validateBody = (req, res, next) => {
   if (!req.body.modelNumber) {
     ErrorMessage.message = "Something went wrong while creating the airplane";
