@@ -89,7 +89,7 @@ const getAllFlights = async (query) => {
     return flights;
   } catch (err) {
     throw new AppError(
-      err.explanation || "Cannot fetch data from db of airplanes",
+      err.explanation || "Cannot fetch data from db of flights",
       StatusCodes.INTERNAL_SERVER_ERROR
     );
   }

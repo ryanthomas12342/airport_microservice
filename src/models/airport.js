@@ -13,6 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "city_id",
         onDelete: "CASCADE",
         onUpdate: "CASCADE",
+        as: "cityDetails",
       });
 
       this.hasMany(models.flight, {

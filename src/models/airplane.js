@@ -12,6 +12,9 @@ module.exports = (sequelize, DataTypes) => {
       this.hasMany(models.flight, {
         foreignKey: "airplaneId",
       });
+      this.hasMany(models.Seat, {
+        foreignKey: "airplaneId",
+      });
     }
   }
   Airplane.init(
