@@ -6,6 +6,7 @@ const datetimecompare = require("../utils/helpers/datetimecompare");
 const flight = new FlightRepository();
 const AppError = require("../utils/errors/apperror");
 const { Op } = require("sequelize");
+const { sequelize } = require("../models");
 
 const createFlight = async (data) => {
   try {
@@ -95,7 +96,58 @@ const getAllFlights = async (query) => {
   }
 };
 
+const getFlight = async (data) => {
+  try {
+    const resp = await flight.get(data);
+
+    return resp;
+  } catch (err) {
+    throw new AppError(
+      err.explanation || "Couldnt retrieve the required flight",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+};
+
+const updateFlight = async (id, data) => {
+  try {
+    const resp = await flight.update(data, id);
+    return resp;
+  } catch (err) {
+    throw new AppError(
+      err.explanation || "Couldnt retrieve the required flight",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+};
+
+const updateSeats = async (flightId, noofSeats) => {
+  try {
+    const resp = await flight.get(flightId);
+
+    if (resp.totalSeats < noofSeats) {
+      throw new AppError(
+        "Not enough seats available ",
+        StatusCodes.INTERNAL_SERVER_ERROR
+      );
+    }
+
+    const newSeats = resp.totalSeats - noofSeats;
+
+    const update = await flight.update({ totalSeats: newSeats }, flightId);
+
+    return update;
+  } catch (err) {
+    throw new AppError(
+      err.explanation || "Couldnt retrieve the required flight",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+};
 module.exports = {
   createFlight,
   getAllFlights,
+  updateFlight,
+  getFlight,
+  updateSeats,
 };

@@ -37,7 +37,7 @@ class CrudRepository {
         StatusCodes.NOT_FOUND
       );
     }
-    console.log(resp);
+    // console.log(resp);
     return resp;
   }
   async getAll() {

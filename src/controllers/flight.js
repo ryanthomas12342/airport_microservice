@@ -60,7 +60,39 @@ const getAllFlights = async (req, res) => {
     return res.status(err.statusCode).json(ErrorMessage);
   }
 };
+
+const getFlightById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const resp = await FlightService.getFlight(id);
+    SuccessMessage.data = resp;
+
+    return res.status(StatusCodes.OK).json(SuccessMessage);
+  } catch (err) {
+    ErrorMessage.error = new AppError(err.explanation, err.statusCode);
+
+    return res.status(err.statusCode).json(ErrorMessage);
+  }
+};
+
+const updateFlights = async (req, res) => {
+  try {
+    const { id } = req.params;
+    console.log("hello this is the id wow", id);
+    const resp = FlightService.updateFlight(id, req.body);
+    SuccessMessage.data = resp;
+
+    return res.status(StatusCodes.OK).send(SuccessMessage);
+  } catch (err) {
+    ErrorMessage.error = new AppError(err.explanation, err.statusCode);
+
+    return res.status(err.statusCode).json(ErrorMessage);
+  }
+};
 module.exports = {
   createFlight,
   getAllFlights,
+  getFlightById,
+  updateFlights,
 };

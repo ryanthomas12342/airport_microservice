@@ -9,6 +9,10 @@ router.post(
   FlightController.createFlight
 );
 
+router.get("/:id", FlightController.getFlightById);
+
 router.get("/", FlightController.getAllFlights);
+
+router.patch("/:id", FlightController.updateFlights);
 
 module.exports = router;
